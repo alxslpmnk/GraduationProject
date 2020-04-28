@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "OKc7DpianI4d40hb6Ha78muIblxJ4TqJQThWbO/I/miHr5CLIsibkb4Bsg0/zxxNjACzYWeNqwHJS7GlmuvCuQ==",
+  "success": true,
+  "projectFilePath": "E:\\4 курс\\Диплом\\TrainingProject\\TrainingProject.Common\\TrainingProject.Common.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\alexa\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.1.3\\microsoft.extensions.dependencyinjection.abstractions.3.1.3.nupkg.sha512"
+  ],
+  "logs": []
+}
