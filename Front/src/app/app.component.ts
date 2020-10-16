@@ -1,35 +1,66 @@
-﻿import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import {UserService} from './Services/user.service'
+import { Component, OnInit } from '@angular/core';
+import {Router, ActivatedRoute} from '@angular/router'
+import { AuthService } from './services/auth.service';
 
-import { User } from './_models';
-import { fromEventPattern } from 'rxjs';
-
-@Component({ selector: 'app', templateUrl: 'app.component.html' })
-export class AppComponent {
-    currentUser: User;
-    static BaseUrl: string = "http://localhost:12453/api";
-    private _userService: UserService; 
-    constructor(
-        private router: Router,
-       
-    ) {
-        
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent implements OnInit{
+  title = 'corporative-sn';
+  static isLogged: boolean = false;
+  isUserLogged: boolean = false;
+  static IsAdmin: boolean = false;
+  constructor(
+    private router: Router,
+    private  route: ActivatedRoute,
+    private _authService: AuthService){}
+    get staticisLogged(){
+        return AppComponent.isLogged;
     }
-    ngOnInit(){
-        this.isLogin();
+    ngOnInit() {
+      this.isLogin();
+      this.isUserLogged=AppComponent.isLogged;
     }
+   
     isLogin(){
-        var promise = this._userService.IsUserLogin(); 
-        promise.then(value => {
-          if(value){ 
-            this.router.navigate(['/home'])
-          }else{ 
-            this.router.navigate(['/login'])
-          }
-        });  
-      }
-    logout() {
-        this.router.navigate(['/login']);
+      var promise = this._authService.IsUserLogin(); 
+      promise.then(value => {
+        if(value){ 
+          this.router.navigate(['/chats']);
+          AppComponent.isLogged=true;
+        }else{ 
+          this.router.navigate(['/login']);
+          AppComponent.isLogged=false;
+        }
+      });  
     }
+
+    Login(){
+
+    }
+    
+  Profile(){
+    this.router.navigateByUrl("/profile");
+  };
+  Messages(){
+    this.router.navigateByUrl("/chats");
+  };
+  Requests(){
+    this.router.navigateByUrl("/requestform");
+  };
+  Calendar(){
+    this.router.navigateByUrl("/calendar");
+  };
+  Logout(){
+    this.router.navigateByUrl("/login");
+    AppComponent.isLogged=false;
+  };
+}
+export class User{
+  id: number;
+  userName: string;
+  password: string;
+  name:string;
 }

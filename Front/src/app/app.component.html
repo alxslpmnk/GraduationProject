@@ -1,13 +1,17 @@
-﻿<!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
-    <div class="navbar-nav">
-        <a class="nav-item nav-link" routerLink="/">Home</a>
-        <a class="nav-item nav-link" (click)="logout()">Logout</a>
-    </div>
-</nav>
-
-<!-- main app container -->
 <div class="container">
-    <router-outlet></router-outlet>
-</div>
-
+    <div class="row" style="background-color:tomato;">
+        <div class="col-4"><h1><b>Company Name</b></h1></div>
+      </div>
+      <div class="row" style="margin-top: 20px;">
+        <div class="col-lg-3" *ngIf="staticisLogged">
+          <mat-nav-list role="list">
+            <mat-list-item role="listitem" (click)="Profile()">Ваш профиль</mat-list-item>
+            <mat-list-item role="listitem" (click)="Messages()">Сообщения</mat-list-item>
+            <mat-list-item role="listitem" (click)="Requests()">Ваши заявки</mat-list-item>
+            <mat-list-item role="listitem" (click)="Calendar()">Ваш календарь</mat-list-item>
+            <mat-list-item role="listitem" (click)="Logout()">Выйти из системы</mat-list-item>
+          </mat-nav-list>
+        </div>
+        <router-outlet></router-outlet>
+    </div>
+    </div>
